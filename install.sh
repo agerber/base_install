@@ -1,12 +1,14 @@
+CURRENT_DIR=`pwd`
+
 #create user bin dir if needed
-mkdir -p ~/bin
+#mkdir -p ~/bin
 
 #add this user bin dir to the path
-PATH=~/bin:$PATH
-export PATH
+#PATH="~/bin:$PATH"
+#export PATH
 
 # copy git-top over to my bin dir so it gets on the path
-cp git-top ~/bin/
+#cp git-top ~/bin/
 
 #set up custom git aliases
 cat my.config.git >> ~/.gitconfig
@@ -19,5 +21,7 @@ mkdir -p ~/and
 cd ~/and
 
 # finally checkout all other repositories
-git clone git://github.com/agerber/bt18Adapters.git
+CLONE_REPOS_SCRIPT="$1"
+CLONE_REPOS_CMD="$CURRENT_DIR/$CLONE_REPOS_SCRIPT"
+$CLONE_REPOS_CMD
 
