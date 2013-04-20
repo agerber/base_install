@@ -1,0 +1,5 @@
+[alias]
+    ac = "!sh -c '. git-top && git add . && git add -u . && git commit -m \"$1\"' -"
+    qt = "!sh -c '. git-top && git tag -a \"$1\" -m \"version $1\"' -"
+    btc = "!sh -c '. git-top && git checkout \"$1\" && git checkout -b \"my-$1\"' -"
+
