@@ -24,14 +24,14 @@ if [ $foundEntry -ne 0 ]
          . ~/.bashrc
 fi
 
-# copy git-top over to my bin dir so it gets on the path
-cp git-top ~/bin/
+# copy custom binaries over to my bin dir so it gets on the path
+cp customBinaries/* ~/bin/
 
 #set up custom git aliases
 
 
 # if the alias block is not defined, define it
-grep alias ~/.gitconfig
+grep -q alias ~/.gitconfig
 foundAlias=$?
 if [ $foundAlias -ne 0 ]
    then echo "[alias]" >> ~/.gitconfig
@@ -43,7 +43,7 @@ fi
 while read alias; do
     field=`echo $alias | cut -d " " -f1 | tr -d ' '`
 
-    git config --get-regexp alias | grep "alias.$field " 
+    git config --get-regexp alias | grep -q "alias.$field " 
     isLineFound=$?
 
     if [ $isLineFound -ne 0 ]
