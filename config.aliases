@@ -1,3 +1,3 @@
-ac = "!sh -c '. git-top DOUBLE_AMPERSAND git add . DOUBLE_AMPERSAND git add -u . DOUBLE_AMPERSAND git commit -m ARG_1' -"
-qt = "!sh -c '. git-top DOUBLE_AMPERSAND git tag -a \"$1\" -m ARG_1' -"
-btc = "!sh -c '. git-top DOUBLE_AMPERSAND git checkout ARG_1 DOUBLE_AMPERSAND git checkout -b ARG_1' -"
+ac = "!sh -c '. git-top AND_COMMAND git add . AND_COMMAND git add -u . AND_COMMAND git commit -m ARG_1' -"
+qt = "!sh -c '. git-top AND_COMMAND git tag -a ARG_1 -m ARG_1' -"
+btc = "!sh -c '. git-top AND_COMMAND git checkout ARG_1 AND_COMMAND git checkout -b ARG_1' -"

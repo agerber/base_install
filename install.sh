@@ -38,25 +38,23 @@ if [ $foundAlias -ne 0 ]
 fi
 
 # for each line of the new config file
-#   check to see if the line exists
+#   check to see if the command exists
 #   if it doesn't, insert the line into the alias block
 while read alias; do
-    alias_without_amp=`echo $alias | sed "s/DOUBLE_AMPERSAND/\&\&/g"`
-    alias_without_ARG=`echo $alias_without_amp | sed 's/ARG_\([[:digit:]]*\)/\\"\$\1\\"/g'`
+    field=`echo $alias | cut -d " " -f1 | tr -d ' '`
 
-    grep "$alias_without_ARG" ~/.gitconfig
+    git config --get-regexp alias | grep "alias.$field " 
     isLineFound=$?
 
     if [ $isLineFound -ne 0 ]
         then 
-            echo $alias
             theBlock="{G;s/$/    $alias/;}"
             sed -i.bak "/\[alias\]/$theBlock" ~/.gitconfig
     fi
 done < config.aliases
 
-# finally replace all DOUBLE_AMPERSAND instances with &&
-sed -i.bak "s/DOUBLE_AMPERSAND/\&\&/g" ~/.gitconfig
+# finally replace all AND_COMMAND instances with &&
+sed -i.bak "s/AND_COMMAND/\&\&/g" ~/.gitconfig
 
 # replace all ARG_(digits) with the actual arguments
 sed -i.bak 's/ARG_\([[:digit:]]*\)/\\"\$\1\\"/g' ~/.gitconfig
